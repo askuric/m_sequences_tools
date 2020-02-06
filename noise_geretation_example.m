@@ -14,8 +14,8 @@ m = ceil(log(length)/log(base));
 p_weigths = prim_poly_search(base, m, 2);
 
 %% Gaussian noise params
-sigma= 0.5;
-mu = 5;
+sigma= 2;
+mu = 2;
 
 
 %% Iterative generation 
@@ -44,18 +44,29 @@ end
 figure(1)
 subplot(3,1,1)
 plot(U1)
+title(strcat('Uniform PRMS noise U1 b=',num2str(base),' and m=',num2str(m)));
+xlim([0,base^m])
 subplot(3,1,2)
 plot(U2)
+xlim([0,base^m])
+title(strcat('Uniform PRMS noise U2 b=',num2str(base),' and m=',num2str(m)));
 subplot(3,1,3)
 plot(n_gaus)
+title(strcat('Gaussian noise \sigma=',num2str(sigma),' and \mu=',num2str(mu)));
+xlim([0,base^m])
 
 figure(2)
 subplot(3,1,1)
 hist(U1,base)
+title(strcat('Uniform PRMS noise U1 b=',num2str(base),' and m=',num2str(m)));
 subplot(3,1,2)
 hist(U2,base)
+title(strcat('Uniform PRMS noise U2 b=',num2str(base),' and m=',num2str(m)));
 subplot(3,1,3)
-hist(n_gaus,2*base)
+[x,y] = hist(n_gaus,base)
+bar(y,x)
+title(strcat('Gaussian noise \sigma=',num2str(sigma),' and \mu=',num2str(mu)));
+
 
 
 
